@@ -4,8 +4,17 @@ import { IonIcon } from "@ionic/react";
 import { logoIonic } from "ionicons/icons";
 
 import { IonAvatar } from "@ionic/react";
-
-function List() {
+function LinkPage() {
+  return (
+    <>
+      <Link to="/home">Home</Link>
+      <Link to="/about">Home</Link>
+      <Link to="/contact">Home</Link>
+      <Link to="/ss">Home</Link>
+    </>
+  );
+}
+function Row() {
   var getRandomName = (e) => {
     let listNames = [
       "arif",
@@ -23,64 +32,24 @@ function List() {
     return listNames[randomIndex];
   };
   return (
-    <div>
-      <ion-grid fixed={true}>
-        <ion-row>
-          {[...Array(3)].map((e, key) => {
-            return (
-              <>
-                <ion-col>
-                  <IonAvatar>
-                    <img
-                      alt="Silhouette of a person's head"
-                      src="https://ionicframework.com/docs/img/demos/avatar.svg"
-                    />
-                  </IonAvatar>
-                  <div style={{ padding: "10px" }} />
-                  <b style={{ color: "black" }}>{getRandomName(4)}</b>
-                </ion-col>
-              </>
-            );
-          })}
-        </ion-row>
-        <ion-row>
-          {[...Array(3)].map((e, key) => {
-            return (
-              <>
-                <ion-col>
-                  <IonAvatar>
-                    <img
-                      alt="Silhouette of a person's head"
-                      src="https://ionicframework.com/docs/img/demos/avatar.svg"
-                    />
-                  </IonAvatar>
-                  <div style={{ padding: "10px" }} />
-                  <b style={{ color: "black" }}>{getRandomName(4)}</b>
-                </ion-col>
-              </>
-            );
-          })}
-        </ion-row>
-        <ion-row>
-          {[...Array(3)].map((e, key) => {
-            return (
-              <>
-                <ion-col>
-                  <IonAvatar>
-                    <img
-                      alt="Silhouette of a person's head"
-                      src="https://ionicframework.com/docs/img/demos/avatar.svg"
-                    />
-                  </IonAvatar>
-                  <div style={{ padding: "10px" }} />
-                  <b style={{ color: "black" }}>{getRandomName(4)}</b>
-                </ion-col>
-              </>
-            );
-          })}
-        </ion-row>
-      </ion-grid>
-    </div>
+    <ion-row>
+      {[...Array(3)].map((e, key) => {
+        return (
+          <>
+            <ion-col>
+              <IonAvatar>
+                <img
+                  alt="Silhouette of a person's head"
+                  src="https://ionicframework.com/docs/img/demos/avatar.svg"
+                />
+              </IonAvatar>
+              <div style={{ padding: "10px" }} />
+              <b style={{ color: "black" }}>{getRandomName(4)}</b>
+            </ion-col>
+          </>
+        );
+      })}
+    </ion-row>
   );
 }
 
@@ -114,8 +83,13 @@ function HomePage() {
           height: "100%",
         }}
       >
-        {/* <span> Listen now content</span> */}
-        <List />
+        <div>
+          <ion-grid fixed={true}>
+            <Row />
+            <Row />
+            <Row />
+          </ion-grid>
+        </div>
       </div>
     </>
   );

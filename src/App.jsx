@@ -11,6 +11,7 @@ import {
   Route,
   useParams,
   Link,
+  // Redirect,
 } from "react-router-dom";
 
 function App() {
@@ -18,11 +19,11 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" Component={HomePage} />
           <Route path="/home" Component={HomePage} />
           <Route exact={true} path="/radio" Component={RadioPage} />
           <Route exact={true} path="/library" Component={LibraryPage} />
           <Route exact={true} path="/search" Component={SearchPage} />
+          <Route path="*" Component={HomePage} />
         </Routes>
       </BrowserRouter>
       <Tabs />

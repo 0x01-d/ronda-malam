@@ -5,10 +5,9 @@ const RadioPage = () => (
   <>
     <IonHeader>
       <IonToolbar>
-        <IonTitle>Lokasi Ronda</IonTitle>
+        <IonTitle>Radio</IonTitle>
       </IonToolbar>
     </IonHeader>
-    <div style={{ padding: "20px" }} />
     <div
       style={{
         display: "flex",
@@ -17,9 +16,7 @@ const RadioPage = () => (
         height: "100%",
       }}
     >
-      Target RT 03
-      <br />
-      Dari jalan 1 - 8
+      Radio content
     </div>
   </>
 );
