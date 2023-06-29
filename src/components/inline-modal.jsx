@@ -16,7 +16,7 @@ function Modal({ isOpen, setIsOpen }) {
   useEffect(() => {
     document.addEventListener("click", function (e) {
       console.log(e.target.innerText, e.target.innerText.includes("Hari"));
-      if (e.target.innerText == "Tutup") {
+      if (e.target.innerText == "Tutup" || e.target.innerText == "TUTUP") {
         setIsOpen(false);
       }
       if (e.target.innerText.includes("Hari")) {
