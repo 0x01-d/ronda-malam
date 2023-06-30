@@ -13,7 +13,7 @@ import {
 import Modal from "../components/inline-modal";
 import { useState } from "react";
 
-const LibraryPage = () => {
+const SemuaHariPage = () => {
   const [openModal, setOpenModal] = useState(false);
   // useEffect(() => {
   //   document.addEventListener("click", function (e) {
@@ -67,4 +67,4 @@ const LibraryPage = () => {
   );
 };
 
-export default LibraryPage;
+export default SemuaHariPage;

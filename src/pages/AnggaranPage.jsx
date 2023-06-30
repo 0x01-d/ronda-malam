@@ -1,14 +1,13 @@
 import React from "react";
 import { IonContent, IonHeader, IonTitle, IonToolbar } from "@ionic/react";
 
-const RadioPage = () => (
+const AnggaranPage = () => (
   <>
     <IonHeader>
       <IonToolbar>
-        <IonTitle>Lokasi Ronda</IonTitle>
+        <IonTitle>Search</IonTitle>
       </IonToolbar>
     </IonHeader>
-    <div style={{ padding: "20px" }} />
     <div
       style={{
         display: "flex",
@@ -17,11 +16,9 @@ const RadioPage = () => (
         height: "100%",
       }}
     >
-      Target RT 03
-      <br />
-      Dari jalan 1 - 8
+      Search content
     </div>
   </>
 );
 
-export default RadioPage;
+export default AnggaranPage;

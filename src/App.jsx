@@ -2,15 +2,16 @@ import React from "react";
 import Tabs from "./components/tabs";
 
 import HomePage from "./pages/HomePage";
-import RadioPage from "./pages/RadioPage";
-import LibraryPage from "./pages/LibraryPage";
-import SearchPage from "./pages/SearchPage";
+import LokasiPage from "./pages/LokasiPage";
+import SemuaHariPage from "./pages/SemuaHariPage";
+import AnggaranPage from "./pages/AnggaranPage";
+import AdminPage from "./pages/AdminPage";
 import {
   BrowserRouter,
   Routes,
   Route,
-  useParams,
-  Link,
+  // useParams,
+  // Link,
   // Redirect,
 } from "react-router-dom";
 
@@ -20,9 +21,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/home" Component={HomePage} />
-          <Route exact={true} path="/radio" Component={RadioPage} />
-          <Route exact={true} path="/library" Component={LibraryPage} />
-          <Route exact={true} path="/search" Component={SearchPage} />
+          <Route exact={true} path="/lokasi" Component={LokasiPage} />
+          <Route exact={true} path="/semua-hari" Component={SemuaHariPage} />
+          <Route exact={true} path="/anggaran" Component={AnggaranPage} />
+          <Route exact={true} path="/admin" Component={AdminPage} />
           <Route path="*" Component={HomePage} />
         </Routes>
       </BrowserRouter>

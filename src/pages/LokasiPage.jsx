@@ -1,13 +1,14 @@
 import React from "react";
 import { IonContent, IonHeader, IonTitle, IonToolbar } from "@ionic/react";
 
-const SearchPage = () => (
+const LokasiPage = () => (
   <>
     <IonHeader>
       <IonToolbar>
-        <IonTitle>Search</IonTitle>
+        <IonTitle>Lokasi Ronda</IonTitle>
       </IonToolbar>
     </IonHeader>
+    <div style={{ padding: "20px" }} />
     <div
       style={{
         display: "flex",
@@ -16,9 +17,11 @@ const SearchPage = () => (
         height: "100%",
       }}
     >
-      Search content
+      Target RT 03
+      <br />
+      Dari jalan 1 - 8
     </div>
   </>
 );
 
-export default SearchPage;
+export default LokasiPage;

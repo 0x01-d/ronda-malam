@@ -1,7 +1,7 @@
 import React from "react";
 import { IonContent, IonHeader, IonTitle, IonToolbar } from "@ionic/react";
 
-const RadioPage = () => (
+const AdminPage = () => (
   <>
     <IonHeader>
       <IonToolbar>
@@ -21,4 +21,4 @@ const RadioPage = () => (
   </>
 );
 
-export default RadioPage;
+export default AdminPage;
