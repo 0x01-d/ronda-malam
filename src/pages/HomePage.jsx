@@ -1,39 +1,43 @@
 import React from "react";
 import { IonContent, IonHeader, IonTitle, IonToolbar } from "@ionic/react";
-import { IonIcon } from "@ionic/react";
-import { logoIonic } from "ionicons/icons";
+// import { IonIcon } from "@ionic/react";
+// import { logoIonic } from "ionicons/icons";
 
 import { IonAvatar } from "@ionic/react";
-function LinkPage() {
-  return (
-    <>
-      <Link to="/home">Home</Link>
-      <Link to="/about">Home</Link>
-      <Link to="/contact">Home</Link>
-      <Link to="/ss">Home</Link>
-    </>
-  );
-}
-function Row() {
-  var getRandomName = (e) => {
-    let listNames = [
-      "arif",
-      "arfad",
-      "hafid",
-      "yali",
-      "anggi",
-      "angga",
-      "riski",
-      "sanjaya",
-      "diki",
-      "heru",
-    ];
-    let randomIndex = Math.floor(Math.random() * listNames.length);
-    return listNames[randomIndex];
-  };
+
+let simpleDatabase = [
+  {
+    name: "arif",
+  },
+  {
+    name: "arfad",
+  },
+  {
+    name: "harif",
+  },
+  {
+    name: "yali",
+  },
+  {
+    name: "anggi",
+  },
+  {
+    name: "angga",
+  },
+  {
+    name: "riski",
+  },
+  {
+    name: "sanjaya",
+  },
+  {
+    name: "diki",
+  },
+];
+function Row({ data }) {
   return (
     <ion-row>
-      {[...Array(3)].map((e, key) => {
+      {data.map((val, key) => {
         return (
           <>
             <ion-col>
@@ -44,7 +48,7 @@ function Row() {
                 />
               </IonAvatar>
               <div style={{ padding: "10px" }} />
-              <b style={{ color: "black" }}>{getRandomName(4)}</b>
+              <b style={{ color: "black" }}>{val.name}</b>
             </ion-col>
           </>
         );
@@ -85,9 +89,9 @@ function HomePage() {
       >
         <div>
           <ion-grid fixed={true}>
-            <Row />
-            <Row />
-            <Row />
+            <Row data={simpleDatabase.slice(0, 3)} />
+            <Row data={simpleDatabase.slice(3, 6)} />
+            <Row data={simpleDatabase.slice(6, 9)} />
           </ion-grid>
         </div>
       </div>
