@@ -13,7 +13,7 @@ let simpleDatabase = [
     name: "arfad",
   },
   {
-    name: "harif",
+    name: "hafid",
   },
   {
     name: "yali",
@@ -38,13 +38,14 @@ function Row({ data }) {
   return (
     <ion-row>
       {data.map((val, key) => {
+        let randomKey = Math.floor(Math.random() * 100);
         return (
           <>
             <ion-col>
               <IonAvatar>
                 <img
                   alt="Silhouette of a person's head"
-                  src="https://ionicframework.com/docs/img/demos/avatar.svg"
+                  src={"https://picsum.photos/80/80?random=" + randomKey}
                 />
               </IonAvatar>
               <div style={{ padding: "10px" }} />

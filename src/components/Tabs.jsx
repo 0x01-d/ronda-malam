@@ -31,9 +31,9 @@ export default function Tabs() {
           <IonLabel>Jadwal</IonLabel>
         </IonTabButton>
 
-        <IonTabButton tab="radio" href="/lokasi">
+        <IonTabButton tab="radio" href="/misi">
           <IonIcon icon={radio} />
-          <IonLabel>Lokasi</IonLabel>
+          <IonLabel>Misi</IonLabel>
         </IonTabButton>
 
         <IonTabButton tab="library" href="/semua-hari">
