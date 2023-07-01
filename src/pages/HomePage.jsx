@@ -1,5 +1,13 @@
 import React from "react";
-import { IonContent, IonHeader, IonTitle, IonToolbar } from "@ionic/react";
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonCol,
+  IonGrid,
+  IonRow,
+} from "@ionic/react";
 // import { IonIcon } from "@ionic/react";
 // import { logoIonic } from "ionicons/icons";
 
@@ -36,12 +44,12 @@ let simpleDatabase = [
 ];
 function Row({ data }) {
   return (
-    <ion-row>
+    <IonRow>
       {data.map((val, key) => {
         let randomKey = Math.floor(Math.random() * 100);
         return (
           <>
-            <ion-col>
+            <IonCol>
               <IonAvatar>
                 <img
                   alt="Silhouette of a person's head"
@@ -50,11 +58,11 @@ function Row({ data }) {
               </IonAvatar>
               <div style={{ padding: "10px" }} />
               <b style={{ color: "black" }}>{val.name}</b>
-            </ion-col>
+            </IonCol>
           </>
         );
       })}
-    </ion-row>
+    </IonRow>
   );
 }
 

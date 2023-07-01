@@ -19,6 +19,9 @@ import {
   constructOutline,
   logoBuffer,
   alarmOutline,
+  settingsOutline,
+  logoWindows,
+  logoTiktok,
 } from "ionicons/icons";
 // import { Link } from "react-router-dom";
 
@@ -27,26 +30,26 @@ export default function Tabs() {
     <div className="footer">
       <IonTabBar slot="bottom">
         <IonTabButton tab="home" href="/home">
-          <IonIcon icon={bookmarkOutline} />
+          <IonIcon icon={logoWindows} color="success" />
           <IonLabel>Jadwal</IonLabel>
         </IonTabButton>
 
         <IonTabButton tab="radio" href="/misi">
-          <IonIcon icon={radio} />
+          <IonIcon icon={logoTiktok} color="danger" />
           <IonLabel>Misi</IonLabel>
         </IonTabButton>
 
         <IonTabButton tab="library" href="/semua-hari">
-          <IonIcon icon={alarmOutline} />
+          <IonIcon icon={alarmOutline} color="warning" />
           <IonLabel>Semua Hari</IonLabel>
         </IonTabButton>
 
         <IonTabButton tab="search" href="/anggaran">
-          <IonIcon icon={logoBuffer} />
+          <IonIcon icon={logoBuffer} color="tertiary" />
           <IonLabel>Anggaran Kopi</IonLabel>
         </IonTabButton>
         <IonTabButton tab="admin" href="/admin">
-          <IonIcon icon={constructOutline} />
+          <IonIcon icon={settingsOutline} color="secondary" />
           <IonLabel>Admin</IonLabel>
         </IonTabButton>
       </IonTabBar>

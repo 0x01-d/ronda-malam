@@ -7,6 +7,7 @@ import SemuaHariPage from "./pages/SemuaHariPage";
 import AnggaranPage from "./pages/AnggaranPage";
 import AdminPage from "./pages/AdminPage";
 import MisiPage from "./pages/MisiPage";
+import Footer from "./components/Footer";
 import {
   BrowserRouter,
   Routes,
