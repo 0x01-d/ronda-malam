@@ -11,10 +11,49 @@ import {
   IonInput,
   IonLabel,
   IonItem,
+  IonAlert,
 } from "@ionic/react";
 import { useEffect } from "react";
+import db from "../../database";
 
-function HistoryAnggaran({ isOpen, setIsOpen }) {
+function toRupiah(total) {
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "IDR",
+  });
+  return formatter.format(total).replace("IDR", "").split(".")[0];
+}
+function AlertElement({ isOpen, setIsOpen, deskripsi }) {
+  // const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <IonAlert
+        isOpen={isOpen}
+        header="Deskripsi"
+        subHeader="--------------------"
+        message={deskripsi}
+        buttons={["OK"]}
+        onDidDismiss={() => setIsOpen(false)}
+      ></IonAlert>
+    </>
+  );
+}
+
+function HistoryAnggaran({ isOpen, setIsOpen, data }) {
+  let exampleData = [
+    {
+      jumlah: 100001,
+      deskripsi: "Dana pertama dari developer",
+      status: "penambahan",
+    },
+    {
+      jumlah: 41589,
+      deskripsi: "Dana digunakan untuk membeli Kopi Kapal Api. lol",
+      status: "pengurangan",
+    },
+  ];
+
   return (
     <IonModal isOpen={isOpen}>
       <IonHeader>
@@ -26,53 +65,80 @@ function HistoryAnggaran({ isOpen, setIsOpen }) {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <IonItem detail={false} color="light">
-          <IonLabel>
-            <h3>Text Item</h3>
-            <p>Detail set to true - detail arrow displays on both modes</p>
-          </IonLabel>
-        </IonItem>
-        <IonItem detail={false}>
-          <IonLabel>
-            <h3>Text Item 2</h3>
-            <p>Detail set to true - detail arrow displays on both modes</p>
-          </IonLabel>
-        </IonItem>
+        {console.log(data)}
+        {data.map((val) => {
+          return (
+            <>
+              <IonItem
+                detail={true}
+                color={val.status == "pengurangan" ? "light" : ""}
+              >
+                <IonLabel>
+                  <h3>Rp.{toRupiah(val.jumlah)}</h3>
+                  <p id="lihat-deskripsi">{val.deskripsi}</p>
+                </IonLabel>
+              </IonItem>
+            </>
+          );
+        })}
       </IonContent>
     </IonModal>
   );
 }
 
+let a = 0;
 function AnggaranPage({ isOpen, setIsOpen }) {
-  const [totalAnggaran, setTotalAnggaran] = useState(100001);
+  const [totalAnggaran, setTotalAnggaran] = useState(
+    db.getValueAnggaran() || 0
+  );
   const [openHistory, setOpenHistory] = useState(false);
-  let externalAnggaranValue = 100002;
-  function toRupiah(total) {
-    const formatter = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "IDR",
-    });
-    return formatter.format(total).replace("IDR", "").split(".")[0];
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertDeskripsi, setAlertDeskripsi] = useState("");
+  const [historyData, setHistoryData] = useState(db.getHistoryAnggaran());
+  let externalAnggaranValue = 0;
+
+  function onloadHistoryData() {
+    let data = db.getHistoryAnggaran();
+    setHistoryData(data);
   }
+
   function handleTambahAnggaran() {
+    a++;
+    // handle double input
+    if (a % 2 == 0) return;
     let _totalAnggaran = externalAnggaranValue;
     let penambahan = Number(document.getElementById("input-penambahan").value);
+    let desc = document.getElementById("deskripsi-input-penambahan").value;
     _totalAnggaran += isNaN(penambahan) ? 0 : penambahan;
     externalAnggaranValue = _totalAnggaran;
     setTotalAnggaran(Number(_totalAnggaran));
+    db.simpanJumlahAnggaran(penambahan, "penambahan", desc);
+    onloadHistoryData();
   }
   function handleKurangiAnggaran() {
+    a++;
+    // handle double input
+    if (a % 2 == 0) return;
     let _totalAnggaran = externalAnggaranValue;
     let pengurangan = Number(
       document.getElementById("input-pengurangan").value
     );
+    let desc = document.getElementById("deskripsi-input-pengurangan").value;
     _totalAnggaran -= isNaN(pengurangan) ? 0 : pengurangan;
     externalAnggaranValue = _totalAnggaran;
     setTotalAnggaran(Number(_totalAnggaran));
+    db.simpanJumlahAnggaran(pengurangan, "pengurangan", desc);
+    onloadHistoryData();
   }
   useEffect(() => {
     // handle DOM failed rendering
     document.addEventListener("click", function (e) {
+      console.log(e.target.id);
+      if (e.target.id == "lihat-deskripsi") {
+        // console.log(e.target.innerText);
+        setAlertDeskripsi(e.target.innerText);
+        setAlertOpen(true);
+      }
       if (e.target.id == "tambah-anggaran") return handleTambahAnggaran();
       if (e.target.id == "kurangi-anggaran") return handleKurangiAnggaran();
       if (e.target.innerText == "Keluar" || e.target.innerText == "KELUAR") {
@@ -157,7 +223,16 @@ function AnggaranPage({ isOpen, setIsOpen }) {
           <IonTitle>Lihat History</IonTitle>
         </IonToolbar>
       </IonContent>
-      <HistoryAnggaran isOpen={openHistory} setIsOpen={setOpenHistory} />
+      <HistoryAnggaran
+        isOpen={openHistory}
+        setIsOpen={setOpenHistory}
+        data={historyData}
+      />
+      <AlertElement
+        isOpen={alertOpen}
+        setIsOpen={setAlertOpen}
+        deskripsi={alertDeskripsi}
+      />
     </IonModal>
   );
 }
