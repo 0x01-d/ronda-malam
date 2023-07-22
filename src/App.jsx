@@ -29,8 +29,8 @@ function App() {
           <Route exact={true} path="/admin" Component={AdminPage} />
           <Route path="*" Component={HomePage} />
         </Routes>
+        <Tabs />
       </BrowserRouter>
-      <Tabs />
     </>
   );
 }

@@ -2,6 +2,7 @@
   position: absolute;
   bottom: 0;
   width: 100%;
+  font-size: 140px;
   height: 55px; /* Height of the footer */
   /* background: #6cf; */
 }
@@ -11,4 +12,7 @@ ion-col {
   color: #fff;
   text-align: center;
   margin: 20px 30px 10px auto;
+}
+a {
+  outline: none;
 }
