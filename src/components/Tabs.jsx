@@ -82,8 +82,8 @@ export default function Tabs() {
         </Link>
         <Link to="/anggaran" style={{ margin: "0px" }}>
           <ion-tab-button style={{ fontSize }}>
-            <IonIcon icon={logoBuffer} color="tertiary" />
-            Anggaran
+            <IonIcon icon={search} color="tertiary" />
+            Cari
           </ion-tab-button>
         </Link>
         <Link to="/admin" style={{ margin: "40px" }}>
