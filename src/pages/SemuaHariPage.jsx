@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   IonContent,
   IonHeader,
@@ -11,10 +11,10 @@ import {
   IonButton,
 } from "@ionic/react";
 import Modal from "../components/inline-modal";
-import { useState } from "react";
 
 const SemuaHariPage = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [selectSchedule, setSelectSchedule] = useState("");
   // useEffect(() => {
   //   document.addEventListener("click", function (e) {
   //     console.log(e.target.innerText);
@@ -23,6 +23,7 @@ const SemuaHariPage = () => {
   //     }
   //   });
   // }, [true]);
+
   return (
     <>
       <IonHeader>
@@ -30,7 +31,11 @@ const SemuaHariPage = () => {
           <IonTitle>Jadwal Semua Hari</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <Modal isOpen={openModal} setIsOpen={setOpenModal} />
+      <Modal
+        isOpen={openModal}
+        setIsOpen={setOpenModal}
+        schedule={selectSchedule}
+      />
       <div
       // style={{
       //   display: "flex",
@@ -40,25 +45,60 @@ const SemuaHariPage = () => {
       // }}
       >
         <IonList inset={true}>
-          <IonItem>
+          <IonItem
+            button={true}
+            onClick={() => {
+              setSelectSchedule("Minggu");
+            }}
+          >
             <IonLabel>Hari Minggu</IonLabel>
           </IonItem>
-          <IonItem>
+          <IonItem
+            button={true}
+            onClick={() => {
+              setSelectSchedule("Senin");
+            }}
+          >
             <IonLabel>Hari Senin</IonLabel>
           </IonItem>
-          <IonItem>
+          <IonItem
+            button={true}
+            onClick={() => {
+              setSelectSchedule("Selasa");
+            }}
+          >
             <IonLabel>Hari Selasa</IonLabel>
           </IonItem>
-          <IonItem>
+          <IonItem
+            button={true}
+            onClick={() => {
+              setSelectSchedule("Rabu");
+            }}
+          >
             <IonLabel>Hari Rabu</IonLabel>
           </IonItem>
-          <IonItem>
+          <IonItem
+            button={true}
+            onClick={() => {
+              setSelectSchedule("Kamis");
+            }}
+          >
             <IonLabel>Hari Kamis</IonLabel>
           </IonItem>
-          <IonItem>
+          <IonItem
+            button={true}
+            onClick={() => {
+              setSelectSchedule("Jum'at");
+            }}
+          >
             <IonLabel>Hari Jum'at</IonLabel>
           </IonItem>
-          <IonItem>
+          <IonItem
+            button={true}
+            onClick={() => {
+              setSelectSchedule("Sabtu");
+            }}
+          >
             <IonLabel>Hari Sabtu</IonLabel>
           </IonItem>
         </IonList>

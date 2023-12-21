@@ -8,11 +8,18 @@ import {
   IonToolbar,
   IonTitle,
   IonPage,
+  IonGrid,
+  IonList,
+  IonAvatar,
+  IonItem,
+  IonLabel,
 } from "@ionic/react";
 import { useEffect } from "react";
+import simpleDatabase from "../database/jadwal";
 
-function Modal({ isOpen, setIsOpen }) {
+function Modal({ isOpen, setIsOpen, schedule }) {
   const [day, setDay] = useState("");
+  const filteredDatabase = simpleDatabase.filter((e) => e.day === schedule);
   useEffect(() => {
     document.addEventListener("click", function (e) {
       console.log(e.target.innerText, e.target.innerText.includes("Hari"));
@@ -25,6 +32,7 @@ function Modal({ isOpen, setIsOpen }) {
       }
     });
   }, []);
+
   return (
     <IonModal isOpen={isOpen}>
       <IonHeader>
@@ -36,12 +44,21 @@ function Modal({ isOpen, setIsOpen }) {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum
-          quidem recusandae ducimus quos reprehenderit. Veniam, molestias quos,
-          dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
-          dicta.
-        </p>
+        <IonList inset={true}>
+          {filteredDatabase.map((e, index) => {
+            return (
+              <IonItem key={index}>
+                <IonAvatar aria-hidden="true" slot="start">
+                  <img
+                    alt=""
+                    src="https://ionicframework.com/docs/img/demos/avatar.svg"
+                  />
+                </IonAvatar>
+                <IonLabel>{e.name}</IonLabel>
+              </IonItem>
+            );
+          })}
+        </IonList>
       </IonContent>
     </IonModal>
   );
