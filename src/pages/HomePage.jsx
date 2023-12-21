@@ -1,4 +1,5 @@
 import React from "react";
+import simpleDatabase from "../database/jadwal";
 import {
   IonContent,
   IonHeader,
@@ -13,43 +14,15 @@ import {
 
 import { IonAvatar } from "@ionic/react";
 
-let simpleDatabase = [
-  {
-    name: "arif",
-  },
-  {
-    name: "arfad",
-  },
-  {
-    name: "hafid",
-  },
-  {
-    name: "yali",
-  },
-  {
-    name: "anggi",
-  },
-  {
-    name: "angga",
-  },
-  {
-    name: "riski",
-  },
-  {
-    name: "sanjaya",
-  },
-  {
-    name: "diki",
-  },
-];
 function Row({ data }) {
   return (
     <IonRow>
       {data.map((val, key) => {
         let randomKey = Math.floor(Math.random() * 100);
+        let date = new Date();
         return (
           <>
-            <IonCol>
+            <IonCol key={date}>
               <IonAvatar>
                 <img
                   alt="Silhouette of a person's head"
@@ -80,11 +53,21 @@ function HomePage() {
     ];
     return listDay[thisDay];
   }
+  function listByJadwal() {
+    const databaseFiltered = simpleDatabase.filter(
+      (val) => val.day === getDay()
+    );
+    const row1 = databaseFiltered.slice(0, 3);
+    const row2 = databaseFiltered.slice(3, 6);
+    const row3 = databaseFiltered.slice(6, 9);
+    return { row1, row2, row3 };
+  }
+
   return (
     <>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Ronda Hari {getDay()}</IonTitle>
+          <IonTitle>Ronda day {getDay()}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <div style={{ padding: "10px" }} />
@@ -98,9 +81,9 @@ function HomePage() {
       >
         <div>
           <ion-grid fixed={true}>
-            <Row data={simpleDatabase.slice(0, 3)} />
-            <Row data={simpleDatabase.slice(3, 6)} />
-            <Row data={simpleDatabase.slice(6, 9)} />
+            <Row data={listByJadwal().row1} />
+            <Row data={listByJadwal().row2} />
+            <Row data={listByJadwal().row3} />
           </ion-grid>
         </div>
       </div>
